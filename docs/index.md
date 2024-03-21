@@ -2,6 +2,36 @@
 layout: default
 ---
 
+# Whats is an RfmUsb
+
+An RfmUsb is a usb device that exposes the functions of the Hope RFM6x devices over serial command line interface.
+
+## Hardware Overview
+
+### Front View
+
+![rfmusb-front.png](./images/rfmusb-front.png)
+
+### Back View
+
+![rfmusb-back.png](./images/rfmusb-back.png)
+
+### Connectors
+
+Connector | Description
+---------|----------
+ J1 | 50 Ohm SMA female connector
+ J2 | 6 way 2.54mm pitch ISP header (not populated)
+ J3 | USB 2.0 Type A
+
+#### ISP Header
+
+## Requirements
+
+
+## Firmware Update
+
+
 Text can be **bold**, _italic_, or ~~strikethrough~~.
 
 [Link to another page](./another-page.html).
