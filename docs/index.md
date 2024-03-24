@@ -107,7 +107,7 @@ When the device is connected to with a serial console application the CLI comman
 
 When a CLI command executes successfully the device responds with an **OK**. When a CLI command parameter or execution fails the device will return an error response.
 
-The full list of commands is available [rfmusb commands](./docs/rfm69-commands.md)
+The full list of commands is available [rfmusb commands](./rfm69-commands.md)
 
 ### CLI Parameters
 
