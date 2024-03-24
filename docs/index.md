@@ -103,11 +103,11 @@ Linux: [minicom]( https://linux.die.net/man/1/minicom)
 
 When the device is connected to with a serial console application the CLI command **help** retrieves the full list of available CLI commands. CLI Commands are terminated by either a CR or LF character. A CR or LF character entered will repeat the last CLI command.
 
+The full list of commands is available [rfmusb commands](./rfm69-commands.md)
+
 ### CLI Execution
 
 When a CLI command executes successfully the device responds with an **OK**. When a CLI command parameter or execution fails the device will return an error response.
-
-The full list of commands is available [rfmusb commands](./rfm69-commands.md)
 
 ### CLI Parameters
 
