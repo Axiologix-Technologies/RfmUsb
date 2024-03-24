@@ -191,21 +191,52 @@ This function is useful for switching simple one way radio controlled OOK socket
 
 ### CLI Buffered Io Command
 
-By default the Rfm69 devices support a maximum fifo size of 66 bytes. There are some scenarios that require a larger packet size to be transmitted or received. The RfmUsb supports transmission of of a larger packet of 256 bytes, via a buffered io. By default the buffered io feature is not enabled and must first be enabled using the set buffered io enabled CLI command **s-be 1**.
+By default the Rfm69 devices support a maximum fifo size of 66 bytes. There are some scenarios that require a larger packet size to be transmitted or received. The RfmUsb supports transmission of of a larger packet of 256 bytes, via a buffered io. Buffered io can also process packets smaller than the FIFO size. By default the buffered io feature is not enabled and must first be enabled using the set buffered io enabled CLI command **s-be 1**.
 
 ### Large packet transmit
 
+To transmit a large packet via buffered io there are a number of steps are steps required:
+
 To transmit a large packet the io buffer is filled using the write io buffer CLI command **w-b**. Each write allows up to 64 bytes at a time expressed as a hex string. When the buffer has been written with the number of bytes to be transmitted the radio mode must be set to Tx (**s-om 3**). The execute io buffer transmit CLI command is used to transmit the contents of the buffer (**e-btx**). The buffer will be transmitted synchronously during the execution of the (**e-btx**) command.
+
+* Configure the RfmUsb radio
+* Setup the PacketFormat to either fixed or variable length
+* Enable the IO buffer via the BufferedIoEnable setting
+* Write the message bytes to the IO buffer
+* Set the radio Mode to TX
+* Execute the buffered io transmit
+
+```shell
+s-pf 1
+s-be 1
+w-b AA55AA55AA55
+s-om 3
+e-btx
+```
 
 ### Large packet receive
 
+To a receive a large packet via buffered io there are a number of setup steps required:
 
-g-be    Get io buffer read enable
-s-be    Set io buffer read enable
-g-bi    Get io buffer info
-r-b     Read io buffer: [count: 1-256]
-w-b     Write io buffer: hex (1-64)
-e-btx   Execute io buffer transmit
+* Configure the RfmUsb radio
+* Set the Dio mapping for Dio0 to DioMapping1 to capture the PayloadReady Irq
+* Set the Dio mapping for Dio1 to DioMapping2 to capture the FifoNotEmpty Irq
+* Setup the PacketFormat to either fixed or variable length
+* Set the PayloadLength to 0xFF
+* Enable the IO buffer
+* Set the radio Mode to RX
+* Wait for the PayloadReady Irq
+* Read the message bytes from the io buffer
+
+```shell
+s-dio 0 1
+s-dio 1 2
+s-pf 1
+s-pl 0xFF
+s-be 1
+s-om 4
+r-b
+```
 
 ## Example Usage
 
