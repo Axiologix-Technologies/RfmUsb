@@ -107,6 +107,8 @@ When the device is connected to with a serial console application the CLI comman
 
 When a CLI command executes successfully the device responds with an **OK**. When a CLI command parameter or execution fails the device will return an error response.
 
+The full list of commands is available [rfmusb commands](./docs/rfm69-commands.md)
+
 ### CLI Parameters
 
 A number CLI commands have required parameters, these are denoted in the command help description.
@@ -145,6 +147,24 @@ When the DIO Irq occurs the serial console application will be notified with a D
 
 The device Irq flags can be read with the get Irq flags CLI command **g-irq**. This will return the list of Irq flags and their current status.
 
+```shell
+0:CRC_OK
+0:PAYLOAD_READY
+0:PACKET_SENT
+0:FIFO_OVERRUN
+0:FIFO_LEVEL
+0:FIFO_NOT_EMPTY
+0:FIFO_FULL
+0:ADDRESS_MATCH
+0:AUTO_MODE
+0:TIMEOUT
+0:RSSI
+0:PLL_LOCK
+0:TX_RDY
+0:RX_RDY
+1:MODE_RDY
+```
+
 Flag | Description
 ---------|----------
 CRC_OK | Set in Rx when the CRC of the payload is Ok. Cleared when FIFO is empty.
@@ -175,9 +195,10 @@ By default the Rfm69 devices support a maximum fifo size of 66 bytes. There are 
 
 ### Large packet transmit
 
-To transmit a large packet the io buffer is filled using the write io buffer CLI command **w-b**. Each write allows up to 64 bytes at a time expressed as a hex string. When the buffer has been written with the number of bytes to be transmitted the radio mode must be set to Tx (**s-om 3**). The execute io buffer transmit CLI command is used to transmit the contents of the buffer (**e-btx**).
+To transmit a large packet the io buffer is filled using the write io buffer CLI command **w-b**. Each write allows up to 64 bytes at a time expressed as a hex string. When the buffer has been written with the number of bytes to be transmitted the radio mode must be set to Tx (**s-om 3**). The execute io buffer transmit CLI command is used to transmit the contents of the buffer (**e-btx**). The buffer will be transmitted synchronously during the execution of the (**e-btx**) command.
 
 ### Large packet receive
+
 
 g-be    Get io buffer read enable
 s-be    Set io buffer read enable
