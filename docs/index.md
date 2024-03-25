@@ -80,7 +80,7 @@ Pin | Name | Function
 
 ## Firmware Update
 
-The firmware on the device can be updated via the UF2 boot loader that is installed on the RfmUsb device. The boot loader can be entered by two mechanisms, via a a cli command or via a double reset. A double reset of the device will enter the UF2 boot loader. A double reset can be performed by plugging the device into a usb port and connecting the RESET (Pin 2) on the ISP port to GND (PIN 3 or 5).
+The firmware on the device can be updated via the UF2 boot loader that is installed on the RfmUsb device. The boot loader can be entered by two mechanisms, via a cli command or via a double reset. A double reset of the device will enter the UF2 boot loader. A double reset can be performed by plugging the device into a usb port and connecting the RESET (Pin 2) on the ISP port to GND (PIN 3 or 5).
 
 ## Serial Device Configuration
 
